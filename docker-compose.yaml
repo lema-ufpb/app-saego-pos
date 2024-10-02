@@ -3,7 +3,7 @@ services:
   app:
     image: registry.gitlab.com/lema_ufpb/projetos/apps/app-saego-pos:v1.1
     container_name: app-saego-pos
-    hostname: saego
+    hostname: app-saego-pos
     ports:
       - "3004:3000"
     restart: "unless-stopped"
