@@ -1,5 +1,5 @@
 {
-  "name": "app-saego",
+  "name": "app-saego-pos",
   "version": "0.1.0",
   "scripts": {
     "server": "node ./js/server.js"
