@@ -19,8 +19,11 @@
     "editor.showUnused": true
 },
 "cSpell.words": [
+  "addgroup",
+  "adduser",
   "dind",
   "dockerenv",
+  "github",
   "googlebot",
   "keyscan",
   "noimageindex",

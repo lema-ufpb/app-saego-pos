@@ -1,27 +1,24 @@
-# base image
 FROM node:21.1-alpine3.17
-LABEL Description="Imagem NodeJS App" Vendor="LEMA-UFPB <contato@lema.ufpb.br>" Version="1.1"
 
 USER root 
 RUN apk update && apk upgrade --no-cache
 
-RUN adduser --shell /sbin/nologin --disabled-password \
-    --uid 5000 --ingroup root app-user
+RUN addgroup -S app_group && adduser -S app_user -G app_group
 
 WORKDIR /app
 
-COPY ./package.json /app
-COPY ./index.html /app
-COPY ./css /app/css
-COPY ./img /app/img
-COPY ./js /app/js
-COPY ./.npmrc /app
+RUN chown -R app_user:app_group /app
+
+COPY --chown=app_user:app_group ./package.json /app
+COPY --chown=app_user:app_group ./index.html /app
+COPY --chown=app_user:app_group ./css /app/css
+COPY --chown=app_user:app_group ./img /app/img
+COPY --chown=app_user:app_group ./js /app/js
+COPY --chown=app_user:app_group ./.npmrc /app
 
 RUN npm install 
 
-USER app-user
+USER app_user
 
 EXPOSE 3000
-CMD npm run server
-
-
+CMD ["npm", "run", "server"]
